@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A-Frame Spinner</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      #popup-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        background: transparent;
+        display: none;
+        cursor: pointer;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #popup-container.active {
+        display: flex;
+      }
+
+      .popup {
+        display: none;
+      }
+
+      .popup.active {
+        display: inherit;
+      }
+
+      .popup {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .popup#a {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/christine%20darden.png?v=1734363380368);
+      }
+
+      .popup#b {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/human%20computers.png?v=1734363508223);
+      }
+
+      .popup#c {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/project%20mercury.png?v=1734363326965);
+      }
+
+      .popup#d {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/grace%20hopper.png?v=1734363412150);
+      }
+
+      .popup#e {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/ada%20lovelace.png?v=1734363464332);
+      }
+
+      .popup#f {
+        background-image: url(https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/mary%20allen%20wikes.png?v=1734363561219);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="popup-container">
+      <div id="a" class="popup"></div>
+      <div id="b" class="popup"></div>
+      <div id="c" class="popup"></div>
+      <div id="d" class="popup"></div>
+      <div id="e" class="popup"></div>
+      <div id="f" class="popup"></div>
+    </div>
+
+    <a-scene cursor="rayOrigin: mouse">
+      <a-assets>
+        <img
+          id="reflections"
+          src="https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/shanghai_bund.jpg?v=1733830949528"
+        />
+        <img
+          id="sky"
+          src="https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/background.png?v=1733830852526"
+        />
+      </a-assets>
+
+      <a-sky src="#sky"></a-sky>
+
+      <a-image
+        src="https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/SD012.png?v=1733830869588"
+        position="0 1.6 -10"
+        width="34"
+        height="16"
+        rotation="-20 0 0"
+      >
+      </a-image>
+
+      <a-camera rotation="-15 0 0" position="0 2 0"></a-camera>
+
+      <a-entity id="button" position="3.8 4.2 -3" class="clickable">
+        <a-box color="light-grey" depth="0.03" height="0.2" width="0.6" material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"></a-box>
+
+        <a-text
+          value="about"
+          color="white"
+          align="center"
+          position="-0.01 0 0.02"
+          scale="0.5 0.5 0.5"
+        >
+        </a-text>
+      </a-entity>
+
+      <a-entity
+        spinner="radius:3.3; spinSpeed: 0.1; scrollSensitivity: 0.5"
+        id="spinner"
+        position="0 1.6 -5"
+      >
+        <a-sphere
+          popup="target: a; url: https://google.com; alertString: 
+                 Resources: 
+                 Christine Darden: From Human Computer to Engineer by Nasa 
+                 Feminist data by By Catherine D'Ignazio and Lauren F. Klein
+                 "
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/circle.obj?v=1733830725383"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+          ></a-entity>
+        </a-sphere>
+
+        <a-sphere
+          popup="target: b; url: https://google.com; alertString: Hi there"
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/cub.obj?v=1733830738673"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+          ></a-entity>
+        </a-sphere>
+
+        <a-sphere
+          popup="target: c; url: https://google.com; alertString: Hi there"
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/figure2.obj?v=1733830743453"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+            ≥,÷≥
+          ></a-entity>
+        </a-sphere>
+
+        <a-sphere
+          popup="target: d; url: https://google.com; alertString: Hi there"
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/polygon.obj?v=1733830748266"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+          ></a-entity>
+        </a-sphere>
+
+        <a-sphere
+          popup="target: e; url: https://google.com; alertString: Hi there"
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/triangle.obj?v=1733830769082"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+          ></a-entity>
+        </a-sphere>
+
+        <a-sphere
+          popup="target: f; url: https://google.com; alertString: Hi there"
+          class="clickable"
+          material="opacity: 0; transparent: true;"
+          scale="0.4 0.4 0.4"
+        >
+          <a-entity
+            obj-model="obj: https://cdn.glitch.global/38890b59-ed25-4924-8acd-4a658fe0daf9/figure.obj?v=1733830823297"
+            material="sphericalEnvMap: #reflections; roughness:0.1; metalness:1"
+            rotation="0 120 0"
+          ></a-entity>
+        </a-sphere>
+      </a-entity>
+
+      <script>
+        var alertString = "";
+        var targetUrl = "";
+        var popupContainer = document.getElementById("popup-container");
+
+        popupContainer.onclick = (e) => {
+          var x = e.clientX / window.innerWidth;
+          if (x > 0.7) {
+            alert(alertString);
+          } else {
+            popupContainer.classList.remove("active");
+            var active = popupContainer.querySelector(".active");
+            active.classList.remove("active");
+          }
+        };
+
+        AFRAME.registerComponent("popup", {
+          schema: {
+            target: { type: "string" },
+            url: { type: "string" },
+            alertString: {type: "string" }
+          },
+          init: function () {
+            // This is click to activate
+
+            this.el.addEventListener("click", () => {
+              alertString = this.data.alertString;
+              popupContainer.classList.add("active");
+              var inner = popupContainer.querySelector(`#${this.data.target}`);
+              inner.classList.add("active");
+              targetUrl = this.data.url;
+            });
+
+            // This is hover to activate
+
+            //             this.el.addEventListener("mouseenter", () => {
+            //               var active = popupContainer.querySelector(".active");
+            //               if (active) active.classList.remove("active");
+
+            //               popupContainer.classList.add("active");
+
+            //               var inner = popupContainer.querySelector(`#${this.data.target}`);
+            //               inner.classList.add("active");
+
+            //               targetUrl = this.data.url;
+            //             });
+
+            //             this.el.addEventListener("mouseleave", () => {});
+          },
+        });
+
+        AFRAME.registerComponent("spinner", {
+          schema: {
+            radius: { type: "number", default: 0.5 },
+            targetAngle: { type: "number", default: 0 },
+            scrollSensitivity: { type: "number", default: 0.01 },
+            spinSpeed: { type: "number", default: 0.1 },
+          },
+
+          init: function () {
+            // Arrange the children in a circle
+            var children = Array.from(this.el.children);
+
+            var step = (Math.PI * 2) / children.length;
+            console.log(step);
+
+            for (var i = 0; i < children.length; i++) {
+              var x = Math.cos(step * i) * this.data.radius;
+              var z = Math.sin(step * i) * this.data.radius;
+
+              children[i].setAttribute("position", {
+                x: x,
+                y: 0,
+                z: z,
+              });
+            }
+
+            // Create the spinning
+            window.addEventListener("wheel", (e) => {
+              var y = e.deltaY;
+              this.data.targetAngle += y * this.data.scrollSensitivity;
+            });
+          },
+
+          tick: function () {
+            var rotation = this.el.getAttribute("rotation");
+            rotation.y =
+              (1 - this.data.spinSpeed) * rotation.y +
+              this.data.targetAngle * this.data.spinSpeed;
+            this.el.setAttribute("rotation", rotation);
+          },
+        });
+
+        document
+          .querySelector("#button")
+          .addEventListener("click", function () {
+            window.location.href = "https://intro-cyber-bug.glitch.me";
+          });
+      </script>
+    </a-scene>
+  </body>
+</html>
